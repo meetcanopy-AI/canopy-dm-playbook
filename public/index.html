@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How I Closed a $4K Deal Through the DMs — Canopy Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09091a;
+      --bg-2: #10102a;
+      --ink: #f4f2ff;
+      --ink-dim: #a09ec0;
+      --cyan: #22d3ee;
+      --purple: #a855f7;
+      --pink: #ec4899;
+      --gradient: linear-gradient(90deg, #22d3ee, #a855f7, #ec4899);
+      --gradient-diag: linear-gradient(135deg, #22d3ee 0%, #a855f7 50%, #ec4899 100%);
+    }
+
+    html, body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      right: -15%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(168,85,247,0.18) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -20%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(34,211,238,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 32px;
+    }
+
+    .logo { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .logo-wordmark { display: flex; flex-direction: column; align-items: center; line-height: 1; }
+    .logo-wordmark span:first-child { font-size: 13px; font-weight: 700; letter-spacing: 4px; color: var(--ink); }
+    .logo-wordmark span:last-child { font-size: 9px; font-weight: 500; letter-spacing: 3px; color: var(--ink-dim); }
+    .umbrella-icon { width: 52px; height: 52px; }
+
+    main {
+      position: relative;
+      z-index: 5;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      text-align: center;
+    }
+
+    .sequel-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 5px 14px;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    h1 .highlight {
+      background: var(--gradient-diag);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .divider-bar {
+      width: 80px;
+      height: 3px;
+      background: var(--gradient);
+      border-radius: 2px;
+      margin: 22px auto;
+    }
+
+    .subhead {
+      font-size: 1.1rem;
+      color: var(--ink-dim);
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto 10px;
+    }
+
+    .proof-line {
+      font-size: 0.85rem;
+      color: var(--ink-dim);
+      margin-bottom: 40px;
+    }
+
+    /* STORY SECTION */
+    .story {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 28px 32px;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+    .story p {
+      font-size: 0.95rem;
+      color: var(--ink-dim);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .story p:last-child { margin-bottom: 0; }
+    .story strong { color: var(--ink); }
+
+    /* PROMPTS LIST */
+    .prompts-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+    .prompts-box h3 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 20px;
+    }
+    .prompt-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .prompt-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .prompt-item:last-child { border-bottom: none; }
+    .prompt-num {
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--purple);
+      width: 20px;
+      padding-top: 2px;
+    }
+    .prompt-info { flex: 1; }
+    .prompt-name { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+    .prompt-desc { font-size: 0.82rem; color: var(--ink-dim); }
+
+    /* PRICE + CTA */
+    .buy-section { margin-bottom: 12px; }
+    .price-display {
+      font-size: 3rem;
+      font-weight: 700;
+      background: var(--gradient-diag);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .price-sub {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      margin-bottom: 24px;
+    }
+
+    .btn-buy {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 18px;
+      border: none;
+      border-radius: 12px;
+      background: var(--gradient);
+      color: #fff;
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-buy:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-buy:active { transform: translateY(0); }
+    .btn-buy:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .guarantee {
+      font-size: 0.78rem;
+      color: var(--ink-dim);
+      margin-top: 12px;
+    }
+
+    /* SEQUEL CALLOUT */
+    .sequel-box {
+      background: rgba(34,211,238,0.06);
+      border: 1px solid rgba(34,211,238,0.2);
+      border-radius: 14px;
+      padding: 18px 24px;
+      margin-top: 40px;
+      text-align: left;
+      font-size: 0.88rem;
+      color: var(--ink-dim);
+      line-height: 1.6;
+    }
+    .sequel-box strong { color: var(--cyan); }
+    .sequel-box a { color: var(--cyan); text-decoration: underline; }
+
+    footer {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 20px 24px 36px;
+      font-size: 0.78rem;
+      color: var(--ink-dim);
+    }
+
+    @media (max-width: 520px) {
+      h1 { font-size: 2rem; }
+      .story, .prompts-box { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">
+      <svg class="umbrella-icon" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="umbGrad" x1="0" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#22d3ee"/>
+            <stop offset="50%" stop-color="#a855f7"/>
+            <stop offset="100%" stop-color="#ec4899"/>
+          </linearGradient>
+        </defs>
+        <path d="M10 52 Q10 10 50 10 Q90 10 90 52 Z" fill="url(#umbGrad)" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+        <line x1="50" y1="10" x2="50" y2="52" stroke="white" stroke-width="1.5" opacity="0.5"/>
+        <line x1="30" y1="13" x2="28" y2="52" stroke="white" stroke-width="1.5" opacity="0.5"/>
+        <line x1="70" y1="13" x2="72" y2="52" stroke="white" stroke-width="1.5" opacity="0.5"/>
+        <line x1="16" y1="26" x2="10" y2="52" stroke="white" stroke-width="1.5" opacity="0.5"/>
+        <line x1="84" y1="26" x2="90" y2="52" stroke="white" stroke-width="1.5" opacity="0.5"/>
+        <line x1="50" y1="52" x2="50" y2="74" stroke="white" stroke-width="3" stroke-linecap="round"/>
+        <path d="M50 74 Q50 86 42 86 Q34 86 34 78" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+      </svg>
+      <div class="logo-wordmark">
+        <span>CANOPY</span>
+        <span>ACADEMY</span>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="sequel-tag">The Sequel to the $3K Field Guide</div>
+
+    <h1>How I Closed a<br><span class="highlight">$4K Deal</span><br>Through the DMs</h1>
+
+    <div class="divider-bar"></div>
+
+    <p class="subhead">10 prompts. No fluff. Just the messages that close.</p>
+    <p class="proof-line">No Zoom link. No pitch deck. No "let me know if you have questions."</p>
+
+    <div class="story">
+      <p>I did not close my first $4K deal on a sales call. I closed it in the DMs.</p>
+      <p>What I had was a system. <strong>Every prompt below is one move in the conversation.</strong> From the first message to the referral ask after the deal is done. Copy them. Paste them into Claude, ChatGPT, or any frontier model. Replace the brackets. Send the output the same day.</p>
+      <p>The prompts are the system. The niche is the raw material.</p>
+    </div>
+
+    <div class="prompts-box">
+      <h3>10 prompts inside</h3>
+      <ul class="prompt-list">
+        <li class="prompt-item">
+          <span class="prompt-num">1</span>
+          <div class="prompt-info">
+            <div class="prompt-name">The Warm Open</div>
+            <div class="prompt-desc">Start the DM without pitching, without being weird</div>
+          </div>
+        </li>
+        <li class="prompt-item">
+          <span class="prompt-num">2</span>
+          <div class="prompt-info">
+            <div class="prompt-name">The Pain Excavator</div>
+            <div class="prompt-desc">Find the real problem beneath what they said</div>
+          </div>
+        </li>
+        <li class="prompt-item">
+          <span class="prompt-num">3</span>
+          <div class="prompt-info">
+            <div class="prompt-name">The Qualifier</div>
+            <div class="prompt-desc">Filter without asking about budget</div>
+          </div>
+        </li>
+        <li class="prompt-item">
+          <span class="prompt-num">4</span>
+          <div class="prompt-info">
+            <div class="prompt-name">The Authority Pivot</div>
+            <div class="prompt-desc">Credibility without the resume dump</div>
+          </div>
+        </li>
+        <li class="prompt-item">
+          <span class="prompt-num">5</span>
+          <div class="prompt-info">
+            <div class="prompt-name">The Offer Intro</div>
+            <div class="prompt-desc">Pitch that feels inevitable, not forced</div>
+          </div>
+        </li>
+        <li class="prompt-item">
+          <span class="prompt-num">6</span>
+          <div class="prompt-info">
+            <div class="prompt-name">The Objection Handler</div>
+            <div class="prompt-desc">Respond to "let me think about it" without chasing</div>
+          </div>
+        </li>
+        <li class="prompt-item">
+          <span class="prompt-num">7</span>
+          <div class="prompt-info">
+            <div class="prompt-name">The Ghosted Follow-Up</div>
+            <div class="prompt-desc">Revive a cold conversation without sounding needy</div>
+          </div>
+        </li>
+        <li class="prompt-item">
+          <span class="prompt-num">8</span>
+          <div class="prompt-info">
+            <div class="prompt-name">The Soft Close</div>
+            <div class="prompt-desc">Get them on a call -- framed as a free diagnostic</div>
+          </div>
+        </li>
+        <li class="prompt-item">
+          <span class="prompt-num">9</span>
+          <div class="prompt-info">
+            <div class="prompt-name">The Post-Call Close</div>
+            <div class="prompt-desc">Lock in the deal after the discovery call</div>
+          </div>
+        </li>
+        <li class="prompt-item">
+          <span class="prompt-num">10</span>
+          <div class="prompt-info">
+            <div class="prompt-name">The Referral Ask</div>
+            <div class="prompt-desc">Turn a closed client into a referral pipeline</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="buy-section">
+      <div class="price-display">$47</div>
+      <div class="price-sub">Instant Download · PDF</div>
+      <button class="btn-buy" id="buy-btn" onclick="checkout()">Get the DM Playbook Now →</button>
+      <p class="guarantee">One-time payment. Instant access. No subscription.</p>
+    </div>
+
+    <div class="sequel-box">
+      <strong>Already have the free $3K Field Guide?</strong> This is the next step. The Field Guide got you clear on your offer. This playbook gets you paid.
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Canopy Academy &nbsp;·&nbsp; Prompt → Profit
+  </footer>
+
+  <script>
+    async function checkout() {
+      const btn = document.getElementById('buy-btn');
+      btn.disabled = true;
+      btn.textContent = 'Redirecting to checkout...';
+
+      try {
+        const res = await fetch('/create-checkout', { method: 'POST' });
+        const data = await res.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          throw new Error('No URL');
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Get the DM Playbook Now →';
+        alert('Something went wrong. Please try again.');
+      }
+    }
+  </script>
+</body>
+</html>
