@@ -32,7 +32,7 @@ app.post('/create-checkout', async (req, res) => {
     res.json({ url: session.url });
   } catch (err) {
     console.error('Stripe error:', err.message);
-    res.status(500).json({ error: 'Checkout failed' });
+    res.status(500).json({ error: 'Checkout failed', detail: err.message });
   }
 });
 
