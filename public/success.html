@@ -47,26 +47,41 @@
   <main>
     <div class="check-icon">✓</div>
     <h1>Payment confirmed.</h1>
-    <p>Your playbook is ready. 10 prompts. Every stage of the DM conversation. Start with Prompt 1 and run them in sequence.</p>
+    <p id="success-msg">Your download is ready.</p>
 
-    <a href="/download" class="btn-download">Download the DM Playbook →</a>
+    <a id="download-btn" href="#" class="btn-download">Download Now →</a>
 
     <div class="divider"></div>
 
     <div class="next-box">
-      <div class="label">Close your first deal live</div>
+      <div class="label">Keep going</div>
       <h3>Free Workshop — Every Wednesday 8PM EST</h3>
-      <p>Bring a real prospect thread. Leave with the next DM to send. Women using AI to build real businesses.</p>
+      <p>Women using AI to build real businesses. Come through and see what's possible. Link in bio or ask us how to join.</p>
     </div>
   </main>
   <footer>&copy; 2025 Canopy Academy &nbsp;·&nbsp; Prompt → Profit</footer>
 
   <script>
-    // Auto-trigger download after 1s
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get('product');
+    const isKit = product === 'kit';
+
+    const downloadUrl = isKit ? '/download-kit' : '/download';
+    const filename = isKit ? 'Canopy-Academy-Prompt-Starter-Kit.pdf' : 'Canopy-Academy-DM-Playbook.pdf';
+    const btnText = isKit ? 'Download the Prompt Starter Kit →' : 'Download the DM Playbook →';
+    const msg = isKit
+      ? 'Your Prompt Starter Kit is ready. 30 copy-paste prompts across 5 categories. Start anywhere.'
+      : 'Your playbook is ready. 10 prompts. Every stage of the DM conversation. Start with Prompt 1 and run them in sequence.';
+
+    document.getElementById('success-msg').textContent = msg;
+    const btn = document.getElementById('download-btn');
+    btn.textContent = btnText;
+    btn.href = downloadUrl;
+
     setTimeout(() => {
       const link = document.createElement('a');
-      link.href = '/download';
-      link.download = 'Canopy-Academy-DM-Playbook.pdf';
+      link.href = downloadUrl;
+      link.download = filename;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

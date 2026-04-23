@@ -26,7 +26,34 @@ app.post('/create-checkout', async (req, res) => {
         quantity: 1
       }],
       mode: 'payment',
-      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}&product=playbook`,
+      cancel_url: `${baseUrl}/`
+    });
+    res.json({ url: session.url });
+  } catch (err) {
+    console.error('Stripe error:', err.message);
+    res.status(500).json({ error: 'Checkout failed', detail: err.message });
+  }
+});
+
+app.post('/create-checkout-kit', async (req, res) => {
+  try {
+    const baseUrl = process.env.BASE_URL || `http://localhost:${PORT}`;
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [{
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'The Prompt Starter Kit',
+            description: '30 copy-paste AI prompts for women in business. — Canopy Academy'
+          },
+          unit_amount: 2700
+        },
+        quantity: 1
+      }],
+      mode: 'payment',
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}&product=kit`,
       cancel_url: `${baseUrl}/`
     });
     res.json({ url: session.url });
@@ -49,11 +76,14 @@ app.get('/success', async (req, res) => {
   }
 });
 
-// Serve playbook only from verified success redirect (session verified above)
 app.get('/download', (req, res) => {
   res.download(path.join(__dirname, 'public', 'playbook.pdf'), 'Canopy-Academy-DM-Playbook.pdf');
 });
 
+app.get('/download-kit', (req, res) => {
+  res.download(path.join(__dirname, 'public', 'prompt-starter-kit.pdf'), 'Canopy-Academy-Prompt-Starter-Kit.pdf');
+});
+
 app.listen(PORT, () => {
-  console.log(`DM Playbook running at http://localhost:${PORT}`);
+  console.log(`Canopy Academy store running at http://localhost:${PORT}`);
 });
